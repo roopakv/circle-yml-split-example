@@ -13,6 +13,7 @@ jobs:
   lint-and-test:
     executor: main
     steps:
+    - checkout
     - basic-command
     - swissknife/fail_if_dirty:
         custom-error-message: Please run make circle-config and push up

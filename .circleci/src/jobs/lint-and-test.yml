@@ -1,6 +1,7 @@
 executor: main
 working_directory: /home/circleci/project
 steps:
+  - checkout
   - basic-command
   - swissknife/fail_if_dirty:
       pattern: .*circleci/config.yml
