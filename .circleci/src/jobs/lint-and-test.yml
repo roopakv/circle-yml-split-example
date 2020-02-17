@@ -1,0 +1,20 @@
+executor: main
+working_directory: /home/circleci/project
+steps:
+  - basic-command
+  - swissknife/fail_if_dirty:
+      pattern: .*circleci/config.yml
+      invert-pattern: false
+      custom-error-message: Please run make circle-config and push up
+      print-modified-files: true
+      steps-to-run:
+        - run:
+            name: Generate Circle CI Config
+            shell: /bin/bash
+            command: |
+              curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | sudo bash
+              make circle-config
+  - run:
+      name: Run tests
+      command: |
+        echo "This is where tests would run"

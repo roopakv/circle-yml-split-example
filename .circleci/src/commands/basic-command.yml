@@ -1,0 +1,6 @@
+description: "A command"
+steps:
+  - run:
+      name: Setup env
+      command: |
+        echo This is where i would setup env.
