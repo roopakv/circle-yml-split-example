@@ -9,4 +9,4 @@ steps:
   - run:
       name: Run tests
       command: |
-        echo "This is where tests would run"
+        echo "This is where tests would run."
