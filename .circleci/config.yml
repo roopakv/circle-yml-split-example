@@ -15,24 +15,15 @@ jobs:
     steps:
     - checkout
     - basic-command
-    - swissknife/fail_if_dirty:
-        custom-error-message: Please run make circle-config and push up
-        invert-pattern: false
-        pattern: .*circleci/config.yml
-        print-modified-files: true
-        steps-to-run:
-        - run:
-            command: |
-              curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | sudo bash
-              make circle-config
-            name: Generate Circle CI Config
-            shell: /bin/bash
+    - swissknife/build_and_check_circle_config:
+        custom-error-message: Please run "make circle-config" and push up.
+        fail-if-dirty: true
     - run:
         command: echo "This is where tests would run"
         name: Run tests
     working_directory: /home/circleci/project
 orbs:
-  swissknife: roopakv/swissknife@0.23.0
+  swissknife: roopakv/swissknife@0.29.0
 version: 2.1
 workflows:
   main-ci:
